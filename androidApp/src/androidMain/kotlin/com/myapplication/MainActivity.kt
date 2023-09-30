@@ -1,4 +1,4 @@
-package com.myapplication
+package com.debtstrackercompose
 
 import MainView
 import android.os.Bundle

@@ -1,4 +1,4 @@
-rootProject.name = "MyApplication"
+rootProject.name = "DebtsTrackerCompose"
 
 include(":androidApp")
 include(":shared")
