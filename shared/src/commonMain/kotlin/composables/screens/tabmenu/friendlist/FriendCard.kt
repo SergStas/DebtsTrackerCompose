@@ -1,4 +1,4 @@
-package ui.friendlist
+package composables.screens.tabmenu.friendlist
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -22,12 +22,11 @@ import data.network.avatarUrl
 import domain.models.Currency
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
-import ui.friendlist.model.FriendItem
-import ui.theme.AppTheme
+import composables.screens.tabmenu.friendlist.model.FriendItem
+import composables.theme.AppTheme
 import util.composables.KamelImagePh
 
-@ExperimentalResourceApi
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class, ExperimentalResourceApi::class)
 @Composable
 fun FriendCard(item: FriendItem) =
     Card(

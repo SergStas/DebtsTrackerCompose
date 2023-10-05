@@ -1,4 +1,4 @@
-package ui.friendlist.model
+package composables.screens.tabmenu.friendlist.model
 
 import domain.models.Currency
 import domain.models.Friend

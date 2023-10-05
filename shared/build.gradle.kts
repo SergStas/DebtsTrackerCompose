@@ -27,14 +27,28 @@ kotlin {
                 implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+
+                // Kamel
                 implementation("media.kamel:kamel-image:0.6.0")
+
+                // Ktor
                 implementation("io.ktor:ktor-client-core:2.3.1")
                 implementation("io.ktor:ktor-client-content-negotiation:2.3.1")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.1")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+
+                // MVVM
                 api("dev.icerock.moko:mvvm-core:0.16.1")
                 api("dev.icerock.moko:mvvm-compose:0.16.1")
+
+                // Kodein
                 implementation("org.kodein.di:kodein-di:7.19.0")
+
+                // Voyager
+                val voyagerVersion = "1.0.0-rc05"
+                implementation("cafe.adriel.voyager:voyager-navigator:$voyagerVersion")
+                implementation("cafe.adriel.voyager:voyager-tab-navigator:$voyagerVersion")
+
             }
         }
         val androidMain by getting {
@@ -42,6 +56,8 @@ kotlin {
                 api("androidx.activity:activity-compose:1.7.2")
                 api("androidx.appcompat:appcompat:1.6.1")
                 api("androidx.core:core-ktx:1.10.1")
+
+                // Ktor
                 implementation("io.ktor:ktor-client-android:2.3.1")
             }
         }
@@ -55,6 +71,7 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
 
             dependencies {
+                // Ktor
                 implementation("io.ktor:ktor-client-darwin:2.3.1")
             }
         }

@@ -1,4 +1,4 @@
-package ui.friendlist
+package composables.screens.tabmenu.friendlist
 
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import di.AppDiAware

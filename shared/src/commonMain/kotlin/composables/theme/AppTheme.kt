@@ -1,4 +1,4 @@
-package ui.theme
+package composables.theme
 
 import androidx.compose.foundation.shape.AbsoluteCutCornerShape
 import androidx.compose.material.MaterialTheme
