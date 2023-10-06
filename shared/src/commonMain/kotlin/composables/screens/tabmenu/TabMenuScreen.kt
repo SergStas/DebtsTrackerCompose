@@ -9,6 +9,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.tab.CurrentTab
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
@@ -17,6 +18,7 @@ import cafe.adriel.voyager.navigator.tab.TabNavigator
 import composables.screens.tabmenu.nav.FriendListTab
 import composables.screens.tabmenu.nav.HomeTab
 import composables.screens.tabmenu.nav.SettingsTab
+import composables.theme.AppTheme
 
 class TabMenuScreen: Screen {
     @Composable
@@ -26,7 +28,10 @@ class TabMenuScreen: Screen {
                 Scaffold(
                     content = { CurrentTab() },
                     bottomBar = {
-                        BottomNavigation {
+                        BottomNavigation(
+                            backgroundColor = AppTheme.colors().surface,
+                            contentColor = AppTheme.colors().primary,
+                        ) {
                             TabNavigationItem(HomeTab)
                             TabNavigationItem(FriendListTab)
                             TabNavigationItem(SettingsTab)
@@ -43,7 +48,13 @@ class TabMenuScreen: Screen {
         BottomNavigationItem(
             selected = tabNavigator.current == tab,
             onClick = { tabNavigator.current = tab },
-            icon = { Icon(painter = tab.options.icon!!, contentDescription = tab.options.title) }
+            icon = {
+                Icon(
+                    painter = tab.options.icon!!,
+                    contentDescription = tab.options.title,
+                    modifier = Modifier.scale(1.6f),
+                )
+            }
         )
     }
 }

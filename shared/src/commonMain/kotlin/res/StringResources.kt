@@ -2,7 +2,7 @@ package res
 
 abstract class StringResources {
     companion object {
-        val instance get() = EngStringResources
+        fun get() = EngStringResources
     }
 
     abstract val bottomNavTitleHome: String

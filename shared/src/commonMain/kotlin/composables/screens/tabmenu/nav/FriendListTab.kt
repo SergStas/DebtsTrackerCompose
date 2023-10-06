@@ -19,7 +19,7 @@ internal object FriendListTab: Tab {
     override val options: TabOptions
         @Composable
         get() {
-            val title = StringResources.instance.bottomNavTitleFriendList
+            val title = StringResources.get().bottomNavTitleFriendList
             val icon = rememberVectorPainter(Icons.Default.Person)
             return remember {
                 TabOptions(1u, title, icon)

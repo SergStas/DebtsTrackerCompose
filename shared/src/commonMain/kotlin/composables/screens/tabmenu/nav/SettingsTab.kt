@@ -19,7 +19,7 @@ internal object SettingsTab: Tab {
     override val options: TabOptions
         @Composable
         get() {
-            val title = StringResources.instance.bottomNavTitleSettings
+            val title = StringResources.get().bottomNavTitleSettings
             val icon = rememberVectorPainter(Icons.Default.Settings)
             return remember {
                 TabOptions(2u, title, icon)

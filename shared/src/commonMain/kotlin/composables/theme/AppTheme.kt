@@ -1,6 +1,6 @@
 package composables.theme
 
-import androidx.compose.foundation.shape.AbsoluteCutCornerShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -21,9 +21,9 @@ object AppTheme{
 
     @Composable
     fun shapes() = MaterialTheme.shapes.copy(
-        small = AbsoluteCutCornerShape(0.dp),
-        medium = AbsoluteCutCornerShape(12.dp),
-        large = AbsoluteCutCornerShape(24.dp),
+        small = RoundedCornerShape(0.dp),
+        medium = RoundedCornerShape(16.dp),
+        large = RoundedCornerShape(24.dp),
     )
 
     @Composable
@@ -91,6 +91,7 @@ object AppTheme{
     }
 
     object Sizes {
+        const val paddingLarge = 20
         const val paddingLarger = 16
         const val paddingNormal = 12
         const val paddingSmaller = 8

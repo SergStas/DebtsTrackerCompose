@@ -6,7 +6,7 @@ import domain.repo.IFriendsRepo
 class FriendsRepo: IFriendsRepo {
     private val list = mutableListOf(
         Friend("1", "aboba", null, false),
-        Friend("2", "dedushka", null, false),
+        Friend("2", "dedushka", null, true),
         Friend("3", "pena", null, false),
     )
 
