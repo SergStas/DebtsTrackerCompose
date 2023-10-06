@@ -21,9 +21,9 @@ object AppTheme{
 
     @Composable
     fun shapes() = MaterialTheme.shapes.copy(
-        small = RoundedCornerShape(0.dp),
-        medium = RoundedCornerShape(16.dp),
-        large = RoundedCornerShape(24.dp),
+        small = RoundedCornerShape(1000.dp),
+        medium = RoundedCornerShape(32.dp),
+        large = RoundedCornerShape(48.dp),
     )
 
     @Composable
@@ -97,5 +97,7 @@ object AppTheme{
         const val paddingSmaller = 8
         const val paddingSmall = 4
         const val paddingExtraSmall = 2
+
+        const val windowPadding = paddingLarge
     }
 }

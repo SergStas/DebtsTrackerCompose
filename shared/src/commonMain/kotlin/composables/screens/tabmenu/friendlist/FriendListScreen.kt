@@ -24,7 +24,7 @@ class FriendListScreen: Screen {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(AppTheme.Sizes.paddingLarge.dp),
+                .padding(AppTheme.Sizes.windowPadding.dp),
             ) {
             friendList
                 .map { FriendItem(it, emptyMap()) {} }

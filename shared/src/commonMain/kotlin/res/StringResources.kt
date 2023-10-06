@@ -9,5 +9,10 @@ abstract class StringResources {
     abstract val bottomNavTitleFriendList: String
     abstract val bottomNavTitleSettings: String
 
-    abstract val friendCardTIsFake: String
+    abstract val friendCardTextIsFake: String
+
+    abstract val homeTextDebtsPh: String
+    abstract val homeTextDebtorsPh: String
+    abstract val homeButtonHistory: String
+    abstract val homeButtonNew: String
 }
