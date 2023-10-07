@@ -10,14 +10,14 @@ import kotlinx.coroutines.launch
 import org.kodein.di.instance
 
 class FriendListViewModel: ViewModel(), AppDiAware {
-    private val getFriendsListUseCase by instance<GetFriendsListUseCase>()
+    private val getFriendsList by instance<GetFriendsListUseCase>()
 
     val friends get() = _friends.asStateFlow()
     private val _friends = MutableStateFlow<List<User>>(emptyList())
 
     fun loadFriendList() {
         viewModelScope.launch {
-            _friends.value = getFriendsListUseCase()
+            _friends.value = getFriendsList()
         }
     }
 }

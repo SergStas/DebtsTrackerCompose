@@ -17,8 +17,8 @@ import res.StringResources
 import util.extensions.format
 
 class HistoryViewModel: AppDiAware, ViewModel() {
-    private val getAllDebtsUseCase by instance<GetAllDebtsUseCase>()
-    private val getAuthedUserUseCase by instance<GetAuthedUserUseCase>()
+    private val getAllDebts by instance<GetAllDebtsUseCase>()
+    private val getAuthedUser by instance<GetAuthedUserUseCase>()
 
     val debtList get() = _debtsList.asStateFlow()
     private val _debtsList = MutableStateFlow<List<DebtHistoryItem>>(emptyList())
@@ -29,10 +29,10 @@ class HistoryViewModel: AppDiAware, ViewModel() {
     fun loadContent() {
         viewModelScope.launch {
             _loading.emit(true)
-            val user = getAuthedUserUseCase()
+            val user = getAuthedUser()
             user?.run {
                 _debtsList.emit(
-                    getAllDebtsUseCase(this).map { mapToItem(it, this) }
+                    getAllDebts(this).map { mapToItem(it, this) }
                 )
             }
             _loading.emit(false)

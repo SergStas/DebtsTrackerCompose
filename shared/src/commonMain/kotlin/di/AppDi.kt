@@ -7,6 +7,8 @@ import domain.repo.IAuthRepo
 import domain.repo.IDebtRepo
 import domain.repo.IFriendsRepo
 import domain.usecases.auth.GetAuthedUserUseCase
+import domain.usecases.auth.LoginUseCase
+import domain.usecases.auth.RegisterUseCase
 import domain.usecases.debts.GetAllDebtsUseCase
 import domain.usecases.friends.GetFriendsListUseCase
 import org.kodein.di.DI
@@ -25,6 +27,8 @@ object AppDi {
         bindProvider { GetAuthedUserUseCase() }
         bindProvider { GetFriendsListUseCase() }
         bindProvider { GetAllDebtsUseCase() }
+        bindProvider { LoginUseCase() }
+        bindProvider { RegisterUseCase() }
     }
 
     val di = DI {

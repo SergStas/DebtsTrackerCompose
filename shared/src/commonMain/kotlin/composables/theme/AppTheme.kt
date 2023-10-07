@@ -60,7 +60,7 @@ object AppTheme{
             fontWeight = FontWeight.Normal,
         ),
         button = MaterialTheme.typography.button.copy(
-            color = colors().onSecondary,
+            color = colors().onPrimary,
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
         ),

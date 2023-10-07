@@ -22,4 +22,16 @@ abstract class StringResources {
     abstract val debtLabelNoDescription: String
     abstract val debtLabelIncoming: String
     abstract val debtLabelOutgoing: String
+
+    abstract val authTitleRegister: String
+    abstract val authTitleLogin: String
+    abstract val authLabelUsername: String
+    abstract val authLabelPassword: String
+    abstract val authLabelPasswordRepeat: String
+    abstract val authTextRedirectToLoginPrefix: String
+    abstract val authTextRedirectToRegisterPrefix: String
+    abstract val authTextRedirectToLoginPostfix: String
+    abstract val authTextRedirectToRegisterPostfix: String
+    abstract val authButtonLogin: String
+    abstract val authButtonRegister: String
 }
