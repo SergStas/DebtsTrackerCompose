@@ -63,7 +63,7 @@ object AppTheme{
             color = colors().onSecondary,
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
-        )
+        ),
     )
 
     @Composable

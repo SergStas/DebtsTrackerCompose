@@ -1,8 +1,8 @@
-package composables.screens.tabmenu.friendlist
+package composables.screens.friendlist
 
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import di.AppDiAware
-import domain.models.Friend
+import domain.models.User
 import domain.usecases.friends.GetFriendsListUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,7 +13,7 @@ class FriendListViewModel: ViewModel(), AppDiAware {
     private val getFriendsListUseCase by instance<GetFriendsListUseCase>()
 
     val friends get() = _friends.asStateFlow()
-    private val _friends = MutableStateFlow<List<Friend>>(emptyList())
+    private val _friends = MutableStateFlow<List<User>>(emptyList())
 
     fun loadFriendList() {
         viewModelScope.launch {

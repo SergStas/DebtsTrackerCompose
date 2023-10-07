@@ -11,4 +11,12 @@ object EngStringResources: StringResources() {
     override val homeTextDebtorsPh = "%s debtors"
     override val homeButtonHistory = "All entries"
     override val homeButtonNew = "New entry"
+
+    override val debtSumPh = "%s %s"
+    override val debtOverdueMsg = "Overdue!"
+    override val debtLabelDescription = "Description"
+    override val debtLabelNoDescription = "No description"
+
+    override val debtLabelIncoming = "to receive from"
+    override val debtLabelOutgoing = "to pay to"
 }

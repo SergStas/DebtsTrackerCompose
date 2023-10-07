@@ -1,4 +1,4 @@
-package composables.screens.tabmenu.friendlist
+package composables.screens.friendlist
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -11,7 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
-import composables.screens.tabmenu.friendlist.model.FriendItem
+import composables.screens.friendlist.model.FriendItem
 import composables.theme.AppTheme
 import util.static.getVm
 

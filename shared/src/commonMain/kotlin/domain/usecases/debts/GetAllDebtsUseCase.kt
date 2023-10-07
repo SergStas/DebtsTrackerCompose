@@ -1,17 +1,19 @@
 package domain.usecases.debts
 
+import di.AppDiAware
 import domain.models.Currency
-import domain.models.Friend
+import domain.models.User
 import domain.repo.IDebtRepo
+import org.kodein.di.instance
 
-class GetAllDebtsUseCase(
-    private val debtRepo: IDebtRepo,
-) {
-    suspend operator fun invoke(owner: Friend, args: FilterArgs? = null) =
+class GetAllDebtsUseCase: AppDiAware {
+    private val debtRepo by instance<IDebtRepo>()
+
+    suspend operator fun invoke(owner: User, args: FilterArgs? = null) =
         debtRepo.getAll(owner, args)
 
     data class FilterArgs(
-        val friends: List<Friend>? = null,
+        val users: List<User>? = null,
         val types: List<DebtTag>? = null,
         val currencies: List<Currency>? = null,
     ) {

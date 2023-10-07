@@ -1,4 +1,4 @@
-package composables.screens.tabmenu.home
+package composables.screens.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,6 +17,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import composables.screens.history.HistoryScreen
 import composables.theme.AppTheme
 import res.StringResources
 
@@ -32,6 +34,7 @@ class HomeScreen: Screen {
 
     @Composable
     private fun ButtonBar() {
+        val navigator = LocalNavigator.current
         Button(
             onClick = {},
             modifier = Modifier.fillMaxWidth().padding(AppTheme.Sizes.paddingNormal.dp),
@@ -42,8 +45,8 @@ class HomeScreen: Screen {
             )
         }
         Button(
-            onClick = {},
-            modifier = Modifier.fillMaxWidth().padding(AppTheme.Sizes.paddingNormal.dp),
+            onClick = { navigator?.push(HistoryScreen()) },
+            modifier = Modifier.fillMaxWidth().padding(AppTheme.Sizes.paddingNormal.dp)
         ) {
             Text(
                 text = StringResources.get().homeButtonHistory,

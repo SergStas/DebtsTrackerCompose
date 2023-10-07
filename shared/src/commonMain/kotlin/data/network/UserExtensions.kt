@@ -1,6 +1,6 @@
 package data.network
 
-import domain.models.Friend
+import domain.models.User
 
-val Friend.avatarUrl
+val User.avatarUrl
     get() = ""

@@ -15,9 +15,9 @@ import cafe.adriel.voyager.navigator.tab.CurrentTab
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
-import composables.screens.tabmenu.nav.FriendListTab
-import composables.screens.tabmenu.nav.HomeTab
-import composables.screens.tabmenu.nav.SettingsTab
+import composables.navigation.tabs.FriendListTab
+import composables.navigation.tabs.HomeTab
+import composables.navigation.tabs.SettingsTab
 import composables.theme.AppTheme
 
 class TabMenuScreen: Screen {

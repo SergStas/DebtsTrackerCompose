@@ -1,4 +1,4 @@
-package composables.screens.tabmenu.settings
+package composables.screens.settings
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

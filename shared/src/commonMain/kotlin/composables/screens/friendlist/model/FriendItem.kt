@@ -1,10 +1,10 @@
-package composables.screens.tabmenu.friendlist.model
+package composables.screens.friendlist.model
 
 import domain.models.Currency
-import domain.models.Friend
+import domain.models.User
 
 data class FriendItem(
-    val friend: Friend,
+    val user: User,
     val debts: Map<Currency, Double>,
     val onClick: (userID: String) -> Unit,
 )

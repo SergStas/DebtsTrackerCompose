@@ -1,4 +1,4 @@
-package composables.screens.tabmenu.friendlist
+package composables.screens.friendlist
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -22,7 +22,7 @@ import data.network.avatarUrl
 import domain.models.Currency
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
-import composables.screens.tabmenu.friendlist.model.FriendItem
+import composables.screens.friendlist.model.FriendItem
 import composables.theme.AppTheme
 import util.composables.KamelImagePh
 
@@ -31,11 +31,11 @@ import util.composables.KamelImagePh
 fun FriendCard(item: FriendItem) =
     Card(
         modifier = Modifier.fillMaxWidth(),
-        onClick = { item.onClick(item.friend.userId) },
+        onClick = { item.onClick(item.user.userId) },
     ) {
         Row(Modifier.padding(AppTheme.Sizes.paddingNormal.dp)) {
             KamelImagePh(
-                contentResource = item.friend.avatarUrl,
+                contentResource = item.user.avatarUrl,
                 phResource = "ic_user_avatar_ph.xml",
             )
             Column(modifier = Modifier
@@ -48,13 +48,13 @@ fun FriendCard(item: FriendItem) =
                     verticalAlignment = Alignment.Top,
                 ) {
                     Text(
-                        text = item.friend.username,
+                        text = item.user.username,
                         style = AppTheme.fonts().h2,
                         modifier = Modifier.weight(.8f).wrapContentWidth(Alignment.Start),
                     )
                     Image(
                         imageVector =
-                            if (item.friend.isReal) Icons.Default.Check
+                            if (item.user.isReal) Icons.Default.Check
                             else Icons.Default.Warning,
                         contentDescription = null,
                         modifier = Modifier.weight(.2f).wrapContentWidth(Alignment.End),
@@ -85,7 +85,7 @@ fun FriendCard(item: FriendItem) =
                                 .wrapContentWidth(Alignment.Start),
                         )
                     }
-                    if (!item.friend.isReal) {
+                    if (!item.user.isReal) {
                         Text(
                             modifier = Modifier
                                 .weight(.6f)

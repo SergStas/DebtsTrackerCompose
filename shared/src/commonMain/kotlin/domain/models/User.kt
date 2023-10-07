@@ -1,6 +1,6 @@
 package domain.models
 
-data class Friend(
+data class User(
     val userId: String,
     val username: String,
     val fullName: String?,

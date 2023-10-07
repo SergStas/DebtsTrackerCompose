@@ -1,11 +1,13 @@
 package domain.usecases.auth
 
-import domain.models.Friend
+import di.AppDiAware
+import domain.models.User
 import domain.repo.IAuthRepo
+import org.kodein.di.instance
 
-class GetAuthedUserUseCase(
-    private val authRepo: IAuthRepo,
-) {
-    suspend operator fun invoke(): Friend? =
+class GetAuthedUserUseCase: AppDiAware {
+    private val authRepo by instance<IAuthRepo>()
+
+    suspend operator fun invoke(): User? =
         authRepo.getAuthedUser()
 }

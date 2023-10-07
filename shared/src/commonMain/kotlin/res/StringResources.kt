@@ -15,4 +15,11 @@ abstract class StringResources {
     abstract val homeTextDebtorsPh: String
     abstract val homeButtonHistory: String
     abstract val homeButtonNew: String
+
+    abstract val debtSumPh: String
+    abstract val debtOverdueMsg: String
+    abstract val debtLabelDescription: String
+    abstract val debtLabelNoDescription: String
+    abstract val debtLabelIncoming: String
+    abstract val debtLabelOutgoing: String
 }
