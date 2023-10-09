@@ -28,7 +28,7 @@ class AuthViewModel: AppDiAware, ViewModel() {
 
     fun checkAuth() {
         viewModelScope.launch {
-            _authed.emit(false)
+            _authed.emit(getAuthedUser() != null)
         }
     }
 
@@ -49,7 +49,7 @@ class AuthViewModel: AppDiAware, ViewModel() {
                 password.run { isNullOrBlank() || isEmpty() } -> Validation.PasswordIsEmpty
                 username!!.length < Constants.USERNAME_MIN_LENGTH -> Validation.UsernameTooShort
                 password!!.length < Constants.PASSWORD_MIN_LENGTH -> Validation.PasswordTooShort
-                _mode.value == Mode.Login && password != passwordRepeat -> Validation.PasswordsNotMatch
+                _mode.value == Mode.Registration && password != passwordRepeat -> Validation.PasswordsNotMatch
                 else -> Validation.Success
             }
             if (validationResult != Validation.Success) {
@@ -93,5 +93,7 @@ class AuthViewModel: AppDiAware, ViewModel() {
         InvalidCredentials,
         PasswordsNotMatch,
         UnknownError;
+
+        val isError get() = this !in listOf(None, Success)
     }
 }

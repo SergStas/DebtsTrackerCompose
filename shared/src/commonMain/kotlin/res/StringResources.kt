@@ -34,4 +34,12 @@ abstract class StringResources {
     abstract val authTextRedirectToRegisterPostfix: String
     abstract val authButtonLogin: String
     abstract val authButtonRegister: String
+    abstract val authErrorUsernameEmpty: String
+    abstract val authErrorUsernameTooShort: String
+    abstract val authErrorPasswordEmpty: String
+    abstract val authErrorPasswordTooShort: String
+    abstract val authErrorUsernameOccupied: String
+    abstract val authErrorPasswordsNotMatch: String
+    abstract val authErrorInvalidCredentials: String
+    abstract val authErrorUnknownError: String
 }

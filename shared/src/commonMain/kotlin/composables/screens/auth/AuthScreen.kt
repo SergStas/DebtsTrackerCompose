@@ -21,6 +21,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -123,6 +124,28 @@ class AuthScreen: Screen {
                             ),
                         )
                     }
+                    if (error.value.isError) {
+                        Text(
+                            modifier = Modifier
+                                .padding(top = AppTheme.Sizes.paddingLarge.dp)
+                                .align(Alignment.CenterHorizontally),
+                            text = StringResources.get().run {
+                                when(error.value) {
+                                    AuthViewModel.Validation.None -> ""
+                                    AuthViewModel.Validation.Success -> ""
+                                    AuthViewModel.Validation.UsernameIsEmpty -> authErrorUsernameEmpty
+                                    AuthViewModel.Validation.PasswordIsEmpty -> authErrorPasswordEmpty
+                                    AuthViewModel.Validation.UsernameTooShort -> authErrorUsernameTooShort
+                                    AuthViewModel.Validation.UsernameOccupied -> authErrorUsernameOccupied
+                                    AuthViewModel.Validation.PasswordTooShort -> authErrorPasswordTooShort
+                                    AuthViewModel.Validation.InvalidCredentials -> authErrorInvalidCredentials
+                                    AuthViewModel.Validation.PasswordsNotMatch -> authErrorPasswordsNotMatch
+                                    AuthViewModel.Validation.UnknownError -> authErrorUnknownError
+                                }
+                            },
+                            style = AppTheme.fonts().h3.copy(color = AppTheme.ColorCodes.c6),
+                        )
+                    }
                     Button(
                         modifier = Modifier.fillMaxWidth().padding(top = AppTheme.Sizes.paddingLarge.dp),
                         onClick = { viewModel.submit(username, password, passwordRepeat) },
@@ -135,12 +158,6 @@ class AuthScreen: Screen {
                                 }
                             },
                             style = AppTheme.fonts().button,
-                        )
-                    }
-                    if (error.value != AuthViewModel.Validation.Success) {
-                        Text(
-                            text = error.value.name,
-                            style = AppTheme.fonts().h3.copy(color = AppTheme.ColorCodes.c6),
                         )
                     }
                 }

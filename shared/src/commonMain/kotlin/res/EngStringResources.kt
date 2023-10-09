@@ -1,5 +1,7 @@
 package res
 
+import util.Constants
+
 object EngStringResources: StringResources() {
     override val bottomNavTitleHome = "Home"
     override val bottomNavTitleFriendList = "FriendList"
@@ -31,4 +33,12 @@ object EngStringResources: StringResources() {
     override val authTextRedirectToRegisterPostfix = "Sign up"
     override val authButtonLogin = "Sign in"
     override val authButtonRegister = "Sign up"
+    override val authErrorUsernameEmpty = "Username unspecified"
+    override val authErrorUsernameTooShort = "Username length must be at least ${Constants.USERNAME_MIN_LENGTH} symbols"
+    override val authErrorPasswordEmpty = "Password unspecified"
+    override val authErrorPasswordTooShort = "Password length must be at least ${Constants.PASSWORD_MIN_LENGTH} symbols"
+    override val authErrorUsernameOccupied = "Username is taken"
+    override val authErrorPasswordsNotMatch = "Passwords not match"
+    override val authErrorInvalidCredentials = "Invalid credentials"
+    override val authErrorUnknownError = "Invalid error has occurred"
 }

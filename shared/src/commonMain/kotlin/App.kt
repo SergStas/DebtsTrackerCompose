@@ -1,4 +1,5 @@
 import androidx.compose.runtime.Composable
+import com.russhwolf.settings.Settings
 import composables.navigation.graphs.RootNavScreen
 import composables.theme.AppTheme
 
@@ -10,3 +11,5 @@ fun App() {
 }
 
 expect fun getPlatformName(): String
+
+expect fun getSettings(): Settings

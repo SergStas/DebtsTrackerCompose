@@ -11,9 +11,11 @@ import domain.usecases.auth.LoginUseCase
 import domain.usecases.auth.RegisterUseCase
 import domain.usecases.debts.GetAllDebtsUseCase
 import domain.usecases.friends.GetFriendsListUseCase
+import getSettings
 import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.bindProvider
+import org.kodein.di.bindSingleton
 import org.kodein.di.provider
 
 object AppDi {
@@ -31,8 +33,13 @@ object AppDi {
         bindProvider { RegisterUseCase() }
     }
 
+    private val dataModule = DI.Module("data") {
+        bindSingleton { getSettings() }
+    }
+
     val di = DI {
         import(useCaseModule)
         import(repoModule)
+        import(dataModule)
     }
 }

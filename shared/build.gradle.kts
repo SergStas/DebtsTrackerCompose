@@ -21,6 +21,11 @@ kotlin {
 
     sourceSets {
         val commonMain by getting {
+            targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
+                binaries.all {
+                    freeCompilerArgs += "-Xlazy-ir-for-caches=disable"
+                }
+            }
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
@@ -48,6 +53,9 @@ kotlin {
                 val voyagerVersion = "1.0.0-rc05"
                 implementation("cafe.adriel.voyager:voyager-navigator:$voyagerVersion")
                 implementation("cafe.adriel.voyager:voyager-tab-navigator:$voyagerVersion")
+
+                // SharedPreferences
+                implementation("com.russhwolf:multiplatform-settings-no-arg:0.8.1")
             }
         }
         val androidMain by getting {
