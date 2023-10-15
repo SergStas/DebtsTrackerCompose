@@ -41,4 +41,15 @@ object EngStringResources: StringResources() {
     override val authErrorPasswordsNotMatch = "Passwords not match"
     override val authErrorInvalidCredentials = "Invalid credentials"
     override val authErrorUnknownError = "Invalid error has occurred"
+
+    override val newDebtClientLabel = "Client:"
+    override val newDebtClientDefaultValue = "Select a client..."
+    override val newDebtSumLabel = "Sum:"
+    override val newDebtDirectionLabelIncoming = "Receive debt from..."
+    override val newDebtDirectionLabelOutgoing = "Pay debt to..."
+    override val newDebtLabelDesc = "Description"
+    override val newDebtDescPh = "Type something..."
+    override val newDebtDatePh = "dd-mm-yyyy"
+    override val newDebtLabelDate = "Expiration date"
+    override val newDebtButtonDone = "Create"
 }

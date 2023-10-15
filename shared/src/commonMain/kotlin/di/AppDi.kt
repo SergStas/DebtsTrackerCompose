@@ -9,8 +9,9 @@ import domain.repo.IFriendsRepo
 import domain.usecases.auth.GetAuthedUserUseCase
 import domain.usecases.auth.LoginUseCase
 import domain.usecases.auth.RegisterUseCase
+import domain.usecases.currencies.GetCurrencyListUseCase
 import domain.usecases.debts.GetAllDebtsUseCase
-import domain.usecases.friends.GetFriendsListUseCase
+import domain.usecases.friends.GetFriendListUseCase
 import getSettings
 import org.kodein.di.DI
 import org.kodein.di.bind
@@ -27,10 +28,11 @@ object AppDi {
 
     private val useCaseModule = DI.Module("useCases") {
         bindProvider { GetAuthedUserUseCase() }
-        bindProvider { GetFriendsListUseCase() }
+        bindProvider { GetFriendListUseCase() }
         bindProvider { GetAllDebtsUseCase() }
         bindProvider { LoginUseCase() }
         bindProvider { RegisterUseCase() }
+        bindProvider { GetCurrencyListUseCase() }
     }
 
     private val dataModule = DI.Module("data") {

@@ -3,6 +3,7 @@ package composables.screens.tabmenu
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
@@ -26,7 +27,6 @@ class TabMenuScreen: Screen {
         Box(Modifier.fillMaxSize()) {
             TabNavigator(HomeTab) {
                 Scaffold(
-                    content = { CurrentTab() },
                     bottomBar = {
                         BottomNavigation(
                             backgroundColor = AppTheme.colors().surface,
@@ -36,8 +36,12 @@ class TabMenuScreen: Screen {
                             TabNavigationItem(FriendListTab)
                             TabNavigationItem(SettingsTab)
                         }
+                    },
+                ) {
+                    Box(Modifier.padding(it)) {
+                        CurrentTab()
                     }
-                )
+                }
             }
         }
 

@@ -4,7 +4,7 @@ import di.AppDiAware
 import domain.repo.IFriendsRepo
 import org.kodein.di.instance
 
-class GetFriendsListUseCase: AppDiAware {
+class GetFriendListUseCase: AppDiAware {
     private val friendsRepo by instance<IFriendsRepo>()
 
     suspend operator fun invoke() =

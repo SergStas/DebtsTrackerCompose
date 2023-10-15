@@ -71,6 +71,7 @@ object AppTheme{
         primary = ColorCodes.c1,
         primaryVariant = ColorCodes.c8,
         secondary = ColorCodes.c7,
+        secondaryVariant = ColorCodes.c9,
         background = ColorCodes.c3,
         surface = ColorCodes.c4,
         onPrimary = ColorCodes.c3,
@@ -88,6 +89,7 @@ object AppTheme{
         val c6 = Color(0xFF7E0000)
         val c7 = Color(0xFF858585)
         val c8 = Color(0xFF0C3009)
+        val c9 = Color(0xFFA5A5A5)
     }
 
     object Sizes {

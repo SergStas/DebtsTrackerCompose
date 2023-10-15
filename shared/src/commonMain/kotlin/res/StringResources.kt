@@ -42,4 +42,15 @@ abstract class StringResources {
     abstract val authErrorPasswordsNotMatch: String
     abstract val authErrorInvalidCredentials: String
     abstract val authErrorUnknownError: String
+
+    abstract val newDebtClientLabel: String
+    abstract val newDebtClientDefaultValue: String
+    abstract val newDebtSumLabel: String
+    abstract val newDebtDirectionLabelIncoming: String
+    abstract val newDebtDirectionLabelOutgoing: String
+    abstract val newDebtLabelDesc: String
+    abstract val newDebtDescPh: String
+    abstract val newDebtDatePh: String
+    abstract val newDebtLabelDate: String
+    abstract val newDebtButtonDone: String
 }

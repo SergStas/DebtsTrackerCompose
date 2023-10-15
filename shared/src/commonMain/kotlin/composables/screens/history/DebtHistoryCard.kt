@@ -34,7 +34,7 @@ fun DebtHistoryCard(item: DebtHistoryItem) =
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(AppTheme.Sizes.paddingSmall.dp),
+            .padding(AppTheme.Sizes.paddingSmaller.dp),
     ) {
         Column {
             Heading(item)
@@ -50,16 +50,18 @@ private fun DescriptionBlock(item: DebtHistoryItem) {
                 if (item.description != null) debtLabelDescription else debtLabelNoDescription
             },
             style = AppTheme.fonts().h2,
+            modifier = Modifier.padding(
+                bottom = AppTheme.Sizes.run {
+                    if (item.description == null) paddingLarge else paddingSmall
+                }.dp,
+            )
         )
         if (item.description != null) {
             Text(
                 text = item.description,
                 style = AppTheme.fonts().h5,
                 maxLines = 6,
-                modifier = Modifier.padding(
-                    top = AppTheme.Sizes.paddingSmall.dp,
-                    bottom = AppTheme.Sizes.paddingLarge.dp,
-                ),
+                modifier = Modifier.padding(bottom = AppTheme.Sizes.paddingLarge.dp),
                 overflow = TextOverflow.Ellipsis,
             )
         }
