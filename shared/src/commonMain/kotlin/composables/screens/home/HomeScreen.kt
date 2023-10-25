@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
+import composables.screens.create.CreateNewDebtScreen
 import composables.screens.history.HistoryScreen
 import composables.theme.AppTheme
 import res.StringResources
@@ -36,7 +37,7 @@ class HomeScreen: Screen {
     private fun ButtonBar() {
         val navigator = LocalNavigator.current
         Button(
-            onClick = {},
+            onClick = { navigator?.push(CreateNewDebtScreen()) },
             modifier = Modifier.fillMaxWidth().padding(AppTheme.Sizes.paddingNormal.dp),
         ) {
             Text(

@@ -20,8 +20,10 @@ import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.Checkbox
 import androidx.compose.material.CheckboxDefaults
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
+import androidx.compose.material.Snackbar
 import androidx.compose.material.Switch
 import androidx.compose.material.SwitchColors
 import androidx.compose.material.Text
@@ -51,6 +53,7 @@ import composables.theme.AppTheme
 import io.ktor.util.date.GMTDate
 import res.StringResources
 import util.composables.datepicker.DateTextField
+import util.extensions.format
 import util.static.getVm
 import kotlin.math.absoluteValue
 
@@ -59,23 +62,67 @@ class CreateNewDebtScreen: Screen {
     override fun Content() {
         val viewModel = getVm(::CreateNewDebtViewModel)
         viewModel.loadLists()
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(AppTheme.Sizes.windowPadding.dp),
-        ) {
-            SwitchCard(viewModel)
-            DebtMainInfo(viewModel)
-            DescriptionCard(viewModel)
-            DatePickerCard(viewModel)
-            FinishButton(viewModel)
+        Box(modifier = Modifier.fillMaxSize()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(AppTheme.Sizes.windowPadding.dp)
+                    .align(Alignment.TopCenter),
+            ) {
+                SwitchCard(viewModel)
+                DebtMainInfo(viewModel)
+                DescriptionCard(viewModel)
+                DatePickerCard(viewModel)
+                FinishButton(viewModel)
+                ProgressBar(
+                    viewModel = viewModel,
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                )
+            }
+            SnackbarMessage(
+                viewModel,
+                Modifier.align(Alignment.BottomCenter),
+            )
+        }
+    }
+
+    @Composable
+    private fun ProgressBar(viewModel: CreateNewDebtViewModel, modifier: Modifier) {
+        val visible = viewModel.loading.collectAsState()
+        if (visible.value) {
+            CircularProgressIndicator(
+                modifier.then(
+                    other = Modifier.padding(AppTheme.Sizes.paddingLarge.dp)
+                )
+            )
+        }
+    }
+
+    @Composable
+    private fun SnackbarMessage(viewModel: CreateNewDebtViewModel, modifier: Modifier) {
+        val error = viewModel.validationResult.collectAsState()
+        val hasError = error.value !in listOf(
+            CreateNewDebtViewModel.ValidationResult.Waiting,
+            CreateNewDebtViewModel.ValidationResult.Success,
+        )
+        if (hasError) {
+            Snackbar(modifier.then(Modifier.padding(AppTheme.Sizes.paddingLarge.dp))) {
+                Box(Modifier.fillMaxWidth()) {
+                    Text(
+                        text = error.value.name,
+                        style = AppTheme.fonts().h5,
+                        color = AppTheme.ColorCodes.c3,
+                        modifier = Modifier.align(Alignment.Center),
+                    )
+                }
+            }
         }
     }
 
     @Composable
     private fun FinishButton(viewModel: CreateNewDebtViewModel) {
         Button(
-            onClick = {},
+            onClick = { viewModel.submit() },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = AppTheme.Sizes.paddingLarge.dp),
@@ -126,7 +173,10 @@ class CreateNewDebtScreen: Screen {
                 if (hasDate.value) {
                     DateTextField(
                         value = dateTextField.value,
-                        onValueChange = { dateTextField.value = it },
+                        onValueChange = {
+                            dateTextField.value = it
+                            viewModel.updateDate(it.text)
+                        },
                         placeholder = {
                             Text(
                                 text = StringResources.get().newDebtDatePh,
@@ -135,10 +185,7 @@ class CreateNewDebtScreen: Screen {
                             )
                         },
                         shape = RoundedCornerShape(AppTheme.Sizes.paddingSmaller),
-                        onDone = {
-                            viewModel.updateDate(it)
-                            keyboardController?.hide()
-                        },
+                        onDone = { keyboardController?.hide() },
                         modifier = AppTheme.Sizes.paddingNormal.dp.let {
                             Modifier.padding(end = it, start = it, bottom = it)
                         },
@@ -229,15 +276,14 @@ class CreateNewDebtScreen: Screen {
         val currency = viewModel.currency.collectAsState()
         val currencyList = viewModel.currencies.collectAsState()
         var dropdownExpanded by remember { mutableStateOf(false) }
-        var sum by remember { mutableStateOf(viewModel.sum.value.toString()) }
+        var sum by remember { mutableStateOf("") }
         Row(
             modifier = Modifier.fillMaxWidth()
                 .height(IntrinsicSize.Min)
                 .padding(top = AppTheme.Sizes.paddingNormal.dp),
         ) {
             Text(
-                modifier = Modifier
-                    .align(Alignment.CenterVertically),
+                modifier = Modifier.align(Alignment.CenterVertically),
                 text = StringResources.get().newDebtSumLabel,
                 style = AppTheme.fonts().h5,
             )
@@ -245,8 +291,14 @@ class CreateNewDebtScreen: Screen {
                 modifier = Modifier
                     .padding(start = AppTheme.Sizes.paddingNormal.dp)
                     .fillMaxWidth(.7f),
-                value = if (sum.toDoubleOrNull()?.let { it.absoluteValue < 1e-3 } == true) "" else sum,
-                onValueChange = { sum = it },
+                value = sum.let {
+                    if ((it.toDoubleOrNull()?.absoluteValue ?: 0.0) < 1e-3) ""
+                    else it
+                },
+                onValueChange = {
+                    sum = it
+                    sum.toDoubleOrNull()?.let(viewModel::updateSum)
+                },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Decimal,
                     autoCorrect = false,
@@ -255,12 +307,12 @@ class CreateNewDebtScreen: Screen {
                 keyboardActions = KeyboardActions(
                     onDone = {
                         keyboardController?.hide()
-                        sum.toDoubleOrNull()?.let { viewModel.updateSum(it) }
+                        sum = viewModel.sum.value.format(2)
                     },
                 ),
                 placeholder = {
                     Text(
-                        text = "0.00",
+                        text = 0.0.toString(),
                         color = AppTheme.ColorCodes.c8,
                     )
                 },

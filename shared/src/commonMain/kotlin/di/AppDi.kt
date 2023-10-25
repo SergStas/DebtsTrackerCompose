@@ -10,6 +10,7 @@ import domain.usecases.auth.GetAuthedUserUseCase
 import domain.usecases.auth.LoginUseCase
 import domain.usecases.auth.RegisterUseCase
 import domain.usecases.currencies.GetCurrencyListUseCase
+import domain.usecases.debts.CreateDebtUseCase
 import domain.usecases.debts.GetAllDebtsUseCase
 import domain.usecases.friends.GetFriendListUseCase
 import getSettings
@@ -33,6 +34,7 @@ object AppDi {
         bindProvider { LoginUseCase() }
         bindProvider { RegisterUseCase() }
         bindProvider { GetCurrencyListUseCase() }
+        bindProvider { CreateDebtUseCase() }
     }
 
     private val dataModule = DI.Module("data") {
