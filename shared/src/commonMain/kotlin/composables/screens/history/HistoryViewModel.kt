@@ -1,7 +1,7 @@
 package composables.screens.history
 
 import composables.screens.history.model.DebtHistoryItem
-import data.network.avatarUrl
+import data.network.util.avatarUrl
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import di.AppDiAware
 import domain.models.Debt

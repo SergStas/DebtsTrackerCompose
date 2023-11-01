@@ -1,5 +1,6 @@
 package di
 
+import data.network.api.httpClient
 import data.repo.AuthRepo
 import data.repo.DebtRepo
 import data.repo.FriendsRepo
@@ -39,6 +40,7 @@ object AppDi {
 
     private val dataModule = DI.Module("data") {
         bindSingleton { getSettings() }
+        bindSingleton { httpClient }
     }
 
     val di = DI {

@@ -13,7 +13,7 @@ interface IAuthRepo {
 
     sealed interface AuthResult {
         sealed class Success(val tokens: AuthTokens): AuthResult
-        data object UnknownError: AuthResult
+        data object UnknownError: Login, Register
 
         sealed interface Login: AuthResult {
             class Success(tokens: AuthTokens): Login, AuthResult.Success(tokens)

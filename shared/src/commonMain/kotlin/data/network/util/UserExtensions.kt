@@ -1,4 +1,4 @@
-package data.network
+package data.network.util
 
 import domain.models.User
 
